@@ -21,23 +21,20 @@ output:
 
 # Problematização
 
-  * Alvo: Doenças de tratamento contínuo.
-  * Infraestrutura fixa de unidades de atendimento.
+  * Alvo: Distribuição do atendimento de doenças de tratamento contínuo.
+  * Caso: Dados de atendimentos de hemodiálise em Curitiba/2016.
   * Demanda VS oferta.
   <!-- * Demanda localizada dos pacientes. -->
   * OPORTUNIDADES:
     * 34% dos atendimentos foram na unidade mais próxima.
-    * Logo, 66% tiveram deslocamento extra.
     * Economia de R$ 1.46 por atendimento apenas em Curitiba.
     * Ganho em qualidade de vida.
     <!-- * Potencial de economia de recursos e ganho em qualidade de vida. -->
   * Objetivos da aplicação
-    * Subsidiar o gestor público na tomada de decisão.
-      * Distribuição de pacientes nas unidades de atendimento.
-      * Redução de custos com transporte e riscos associados.
-      * Alocação de novas unidades de atendimento.
-      * Ampliação das unidades de atendimento.
-    * Melhorar a qualidade de vida dos pacientes.
+    * Subsidiar o gestor público na tomada de decisão visando
+      * Orientar a distribuição dos pacientes.
+      * Redução de custos com transporte.
+      * Alocação e/ou ampliação da rede de unidades de atendimento.
   * Metodologia
     * Dados do SIASUS.
     * Conhecimento em Estatística.
@@ -790,7 +787,7 @@ barchart(~sort(table(nef$hospname)),
 
 ## Distribuição cronológica dos atendimentos
 
-```{r, results = "hide"}
+```{r, results = "hide", fig.show = "hide"}
 #-----------------------------------------------------------------------
 # Série temporal de atendimentos mensais.
 
@@ -1097,6 +1094,36 @@ sum(diag(xtb))/sum(xtb)
 
 xtb
 
+#-----------------------------------------------------------------------
+
+tbx <- merge(as.data.frame(table(x)),
+             as.data.frame(table(y)),
+             by.x = "x",
+             by.y = "y")
+
+tbx$hosname <- hos$name[match(tbx$x, hos$cod)]
+# tbx$hosname <- hos$name
+
+barchart(Freq.x + Freq.y ~ hosname,
+         data = tbx,
+         xlab = "Unidades de atendimento",
+         ylab = "Número de atendimentos",
+         scales = list(x = list(rot = 15)),
+         auto.key = list(title = "Alocação",
+                         cex.title = 1.1,
+                         columns = 2,
+                         text = c("Real", "Ideal"))) +
+    latticeExtra::layer(panel.abline(h = seq(0, max(y), by = 500),
+                                     col = "gray50",
+                                     lty = 2),
+                        under = TRUE)
+
+# sum(with(tbx, Freq.x - Freq.y))
+# sum(tbx$Freq.x) == sum(tbx$Freq.y)
+# sum(tbx$Freq.x) == nrow(nef)
+
+#-----------------------------------------------------------------------
+
 # mosaicplot(xtb, off = FALSE)
 # barplot(xtb, beside = TRUE)
 
@@ -1158,34 +1185,6 @@ xtb$y <- factor(xtb$y, levels = hos$name)
 #                      col[which.packet()[1]] <- mycol[2]
 #                      panel.barchart(..., col = col)
 #                  })))
-
-#-----------------------------------------------------------------------
-
-tbx <- merge(as.data.frame(table(x)),
-             as.data.frame(table(y)),
-             by.x = "x",
-             by.y = "y")
-
-tbx$hosname <- hos$name[match(tbx$x, hos$cod)]
-# tbx$hosname <- hos$name
-
-barchart(Freq.x + Freq.y ~ hosname,
-         data = tbx,
-         xlab = "Unidades de atendimento",
-         ylab = "Número de atendimentos",
-         scales = list(x = list(rot = 15)),
-         auto.key = list(title = "Alocação",
-                         cex.title = 1.1,
-                         columns = 2,
-                         text = c("Real", "Ideal"))) +
-    latticeExtra::layer(panel.abline(h = seq(0, max(y), by = 500),
-                                     col = "gray50",
-                                     lty = 2),
-                        under = TRUE)
-
-# sum(with(tbx, Freq.x - Freq.y))
-# sum(tbx$Freq.x) == sum(tbx$Freq.y)
-# sum(tbx$Freq.x) == nrow(nef)
 
 #-----------------------------------------------------------------------
 ```
