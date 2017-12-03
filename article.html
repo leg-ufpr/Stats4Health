@@ -245,17 +245,24 @@ div.tocify {
 <div id="problematizacao" class="section level1">
 <h1>Problematização</h1>
 <ul>
-<li>Alvo: Doenças de tratamento contínuo. <!-- * Infraestrutura dos hospitais. --></li>
+<li>Alvo: Doenças de tratamento contínuo.</li>
+<li>Infraestrutura fixa de unidades de atendimento.</li>
 <li>Demanda VS oferta. <!-- * Demanda localizada dos pacientes. --></li>
 <li>OPORTUNIDADES:
 <ul>
 <li>34% dos atendimentos foram na unidade mais próxima.</li>
-<li>Logo, 66% tiveram deslocamento extra. <!-- * Potencial de economia de recursos e ganho em qualidade de vida. --></li>
+<li>Logo, 66% tiveram deslocamento extra.</li>
+<li>Economia de R$ 1.46 por atendimento apenas em Curitiba.</li>
+<li>Ganho em qualidade de vida. <!-- * Potencial de economia de recursos e ganho em qualidade de vida. --></li>
 </ul></li>
 <li>Objetivos da aplicação
 <ul>
 <li>Subsidiar o gestor público na tomada de decisão.</li>
-<li>Distribuição de pacientes nas unidades de atendimento. <!-- * Redução de custos com transporte e riscos associados. --> <!-- * Alocação de novas unidades de atendimento. --> <!-- * Ampliação das unidades de atendimento. --></li>
+<li>Distribuição de pacientes nas unidades de atendimento.</li>
+<li>Redução de custos com transporte e riscos associados.</li>
+<li>Alocação de novas unidades de atendimento.</li>
+<li>Ampliação das unidades de atendimento.</li>
+<li>Melhorar a qualidade de vida dos pacientes.</li>
 </ul></li>
 <li>Metodologia
 <ul>
@@ -1131,6 +1138,13 @@ nef$meddist[!is.finite(nef$meddist)] &lt;- NA
 head(nef$meddist, n = 30)
 # d &lt;- d[is.finite(d)]
 
+# Custos.
+nrow(nef)
+a &lt;- sum(nef$mindist) * 0.76
+b &lt;- sum(nef$unidist) * 0.76
+b/a
+(b - a)/nrow(nef)
+
 # plot(ecdf(d))
 # lines(ecdf(nef$unidist), col = 2)
 
@@ -1357,6 +1371,24 @@ barchart(Freq.x + Freq.y ~ hosname,
 
 #-----------------------------------------------------------------------</code></pre>
 </div>
+</div>
+<div id="consideracoes-finais" class="section level1">
+<h1>Considerações finais</h1>
+<ul>
+<li>Subsidiar a distribuição dos pacientes nas UA.</li>
+<li>Distribuição otimizada:
+<ul>
+<li>Redução de custos e riscos com transporte.</li>
+<li>Aumento da qualidade e expectativa de vida.</li>
+</ul></li>
+<li>Orientar investimentos:
+<ul>
+<li>Ampliação da capacidade das UA.</li>
+<li>Criação de novas UA.</li>
+</ul></li>
+<li>Aplicação portável e baseada em software livre.</li>
+<li>Soluções de problemas sociais com Estatística.</li>
+</ul>
 </div>
 
 

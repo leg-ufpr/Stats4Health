@@ -22,19 +22,22 @@ output:
 # Problematização
 
   * Alvo: Doenças de tratamento contínuo.
-  <!-- * Infraestrutura dos hospitais. -->
+  * Infraestrutura fixa de unidades de atendimento.
   * Demanda VS oferta.
   <!-- * Demanda localizada dos pacientes. -->
   * OPORTUNIDADES:
     * 34% dos atendimentos foram na unidade mais próxima.
     * Logo, 66% tiveram deslocamento extra.
+    * Economia de R$ 1.46 por atendimento apenas em Curitiba.
+    * Ganho em qualidade de vida.
     <!-- * Potencial de economia de recursos e ganho em qualidade de vida. -->
   * Objetivos da aplicação
     * Subsidiar o gestor público na tomada de decisão.
-    * Distribuição de pacientes nas unidades de atendimento.
-    <!-- * Redução de custos com transporte e riscos associados. -->
-    <!-- * Alocação de novas unidades de atendimento. -->
-    <!-- * Ampliação das unidades de atendimento. -->
+      * Distribuição de pacientes nas unidades de atendimento.
+      * Redução de custos com transporte e riscos associados.
+      * Alocação de novas unidades de atendimento.
+      * Ampliação das unidades de atendimento.
+    * Melhorar a qualidade de vida dos pacientes.
   * Metodologia
     * Dados do SIASUS.
     * Conhecimento em Estatística.
@@ -951,6 +954,13 @@ nef$meddist[!is.finite(nef$meddist)] <- NA
 head(nef$meddist, n = 30)
 # d <- d[is.finite(d)]
 
+# Custos.
+nrow(nef)
+a <- sum(nef$mindist) * 0.76
+b <- sum(nef$unidist) * 0.76
+b/a
+(b - a)/nrow(nef)
+
 # plot(ecdf(d))
 # lines(ecdf(nef$unidist), col = 2)
 
@@ -1179,3 +1189,15 @@ barchart(Freq.x + Freq.y ~ hosname,
 
 #-----------------------------------------------------------------------
 ```
+
+# Considerações finais
+
+  * Subsidiar a distribuição dos pacientes nas UA.
+  * Distribuição otimizada:
+    * Redução de custos e riscos com transporte.
+    * Aumento da qualidade e expectativa de vida.
+  * Orientar investimentos:
+    * Ampliação da capacidade das UA.
+    * Criação de novas UA.
+  * Aplicação portável e baseada em software livre.
+  * Soluções de problemas sociais com Estatística.
