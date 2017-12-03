@@ -1,5 +1,9 @@
 # Stats4Health
 
+Esse relatório foi apresentado na competição de Ciência de Dados
+[BLUE HACK](https://www.blueopen.org/curitiba). Para ver os demais
+trabalhos, visite: <https://hackdash.org/dashboards/bluehackpr>.
+
 ## EQUIPE
 
   * Walmes Marques Zeviani - `walmes@ufpr.br`
